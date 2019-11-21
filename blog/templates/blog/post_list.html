@@ -7,7 +7,14 @@
                 {{ post.published_date }}
             </div>
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <p>{{ post.text|linebreaksbr }}</p><span style="background-color:yellow">Watson Says:</span>
+            <p>Translation: {{ post.obj2 }}</p>
+            <p>Word Count: {{ post.w_count }} |
+                Letter Count: {{ post.c_count }}</p>
+            <h3> Message Tone:</h3>
+            {% for scores in post.score1 %}
+                <p>{{ scores.score }} ({{ scores.tone_name }})</p>
+            {% endfor %}
         </div>
     {% endfor %}
 {% endblock %}
